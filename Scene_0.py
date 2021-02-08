@@ -4,25 +4,25 @@ import Utils_Size as Size
 import Utils_Scene as Scene
 import Entities_Warp as Warp
 
-def createScene1(tileTexture, assetTexture):
-    scene1 = Scene.Scene()
+def createScene0(tileTexture, assetTexture):
+    scene0 = Scene.Scene()
 
     tilemap = [
         2,  2,  2,  2,  2,  2,  2,  2,  1,  1,
-        2,  2,  4,  4,  4,  4,  4,  1,  2,  1,
-        2,  2,  3,  3,  3,  3,  3,  2,  1,  2,
-        2,  2,  3,  3,  2,  3,  3,  2,  1,  2,
-        2,  2,  2,  2,  2,  2,  2,  2,  2,  2,
-        2,  2,  2,  2,  2,  2,  1,  1,  2,  2,
-        2,  2,  1,  2,  2,  1,  1,  2,  2,  1,
-        1,  2,  2,  2,  2,  2,  1,  2,  1,  1,
+        2,  2,  1,  2,  2,  1,  1,  1,  2,  1,
+        2,  1,  1,  1,  2,  1,  2,  1,  1,  2,
+        2,  1,  1,  2,  2,  2,  2,  2,  1,  2,
+        2, 16, 17, 17, 17, 17, 17, 17, 18,  2,
+        2, 32, 33, 33, 33, 33, 33, 33, 34,  2,
+        2, 32, 33, 33, 33, 33, 33, 33, 34,  1,
+        1, 48, 49, 49, 49, 49, 49, 49, 50,  1,
         2,  1,  1,  2,  2,  2,  1,  1,  1,  1,
     ]
     tileCollider = [
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0,  1, 1, 1, 1, 1, 0, 0, 0,
-        0, 0,  1, 1, 1, 1, 1, 0, 0, 0,
-        0, 0,  1, 1, 0, 1, 1, 0, 0, 0,
+        0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
@@ -40,20 +40,20 @@ def createScene1(tileTexture, assetTexture):
             tiles.append(tile)
 
     assetmap = [
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,  96,  97,  0,  96,  97,  0,  0,  0,
-        0,  0, 112, 113, 26, 112, 113,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
-        0,  0,   0,   0,  0,   0,   0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0, 21,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     ]
     assetCollider = [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -75,15 +75,15 @@ def createScene1(tileTexture, assetTexture):
 
     warps = []
     warp = Warp.Warp()
-    warp.warppos = Position.Position(0, 144)
+    warp.warppos = Position.Position(0, -16)
     warp.size = Size.Size(160, 16)
     warp.tppos = Position.Position(0, 0)
-    warp.sceneId = 0
+    warp.sceneId = 1
     warps.append(warp)
 
-    scene1.tiles = tiles
-    scene1.assets = assets
-    scene1.plantes = plantes
-    scene1.warps = warps
+    scene0.tiles = tiles
+    scene0.assets = assets
+    scene0.plantes = plantes
+    scene0.warps = warps
 
-    return scene1
+    return scene0

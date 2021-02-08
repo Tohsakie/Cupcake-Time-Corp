@@ -4,3 +4,4 @@ class Scene:
         self.tiles = []
         self.assets = []
         self.plantes = []
+        self.warps = []

@@ -11,6 +11,7 @@ import Scripts_Plantations as Plantations
 
 import Scene_1 as Scene1
 import Scene_2 as Scene2
+import Scene_house as SceneHouse
 
 import Utils_Position as Position
 import Utils_Time as Time
@@ -34,13 +35,19 @@ debugTexture = pygame.image.load("res/Debug.png").convert_alpha()
 # entities
 scenes = []
 scene1 = Scene1.createScene1(tileTexture, assetTexture)
-scene1.state = True
+scene1.state = False
 scenes.append(scene1)
 scene2 = Scene2.createScene2(tileTexture, assetTexture)
 scene2.state = False
 scenes.append(scene2)
 
+scenehouse = SceneHouse.createSceneHouse(tileTexture, assetTexture)
+scenehouse.state = True
+scenes.append(scenehouse)
+
 player = Player.Player(playerTexture)
+player.position.x = 64
+player.position.y = 64
 
 # scripts
 input = Input.Input()

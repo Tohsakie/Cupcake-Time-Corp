@@ -2,20 +2,24 @@ import Entities_Player as Player
 import Entities_Window as Window
 import Entities_Tile as Tile
 import pygame
+import Utils_Scene as Scene
 
 class Draw:
     def __init__(self):
         self.window = None
         self.player = None
-        self.tiles = None
-        self.assets = None
+        self.scenes = []
 
     def update(self):
         self.window.screen.fill((0, 0, 0))
-        for tile in self.tiles:
-            tile.draw(self.window.screen)
-        for asset in self.assets:
-            asset.draw(self.window.screen)
+        for scene in self.scenes:
+            if scene.state == True:
+                for tile in scene.tiles:
+                    tile.draw(self.window.screen)
+                for asset in scene.assets:
+                    asset.draw(self.window.screen)
+                for plante in scene.plantes:
+                    plante.draw(self.window.screen)
         self.player.draw(self.window.screen)
 
     # Rescale
@@ -23,7 +27,7 @@ class Draw:
 
     # Ambiant Light
         #mask = pygame.surface.Surface((160*4, 144*4)).convert_alpha()
-        #mask.fill((0,0,0,160))
+        #mask.fill((0, 0, 0, 64))
         #self.window.window.blit(mask,(0,0))
 
     # Point Light

@@ -2,11 +2,14 @@ import sys
 import pygame
 import Entities_Player as Player
 import Entities_Window as Window
+import Entities_Plante as Plante
+import Utils_Scene as Scene
 
 class Input:
     def __init__(self):
         self.window = None
         self.player = None
+        self.scenes = []
 
     def update(self):
         for event in pygame.event.get():
@@ -25,8 +28,16 @@ class Input:
                     self.player.state = Player.PlayerState.MOVELEFT
                 if event.key == pygame.K_d:
                     self.player.state = Player.PlayerState.MOVERIGHT
+                if event.key == pygame.K_e:
+                    self.player.state = Player.PlayerState.PLANTATION
                 if event.key == pygame.K_a:
-                    self.player.state = Player.PlayerState.WINDATTRACT
+                    self.player.state = Player.PlayerState.RECUPERATION
+                #### A SUPPRIMER ####
+                if event.key == pygame.K_m:
+                    for scene in self.scenes:
+                        if scene.state == True:
+                            for plante in scene.plantes:
+                                plante.state = Plante.PlanteState.FRUIT
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_z and self.player.state == Player.PlayerState.MOVEUP:
                     self.player.state = Player.PlayerState.IDLE
@@ -36,5 +47,7 @@ class Input:
                     self.player.state = Player.PlayerState.IDLE
                 if event.key == pygame.K_d and self.player.state == Player.PlayerState.MOVERIGHT:
                     self.player.state = Player.PlayerState.IDLE
-                if event.key == pygame.K_a and self.player.state == Player.PlayerState.WINDATTRACT:
+                if event.key == pygame.K_e and self.player.state == Player.PlayerState.PLANTATION:
+                    self.player.state = Player.PlayerState.IDLE
+                if event.key == pygame.K_a and self.player.state == Player.PlayerState.RECUPERATION:
                     self.player.state = Player.PlayerState.IDLE

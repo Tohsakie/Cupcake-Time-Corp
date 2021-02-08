@@ -9,8 +9,6 @@ class PlayerAction:
     def update(self):
         if self.player.state == Player.PlayerState.IDLE:
             self.player.texPos.x = 0
-        elif self.player.state == Player.PlayerState.WINDATTRACT:
-            self.player.texPos.x = 32
         elif self.player.state == Player.PlayerState.MOVEUP:
             self.player.texPos.y = 48
             self.player.position.y -= self.player.speed * Time.Time.deltaTime

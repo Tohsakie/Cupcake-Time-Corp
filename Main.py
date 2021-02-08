@@ -7,9 +7,14 @@ import Scripts_PlayerAction as PlayerAction
 import Scripts_Collision as Collision
 import Scripts_Draw as Draw
 import Scripts_FrameCounter as FrameCounter
+import Scripts_Plantations as Plantations
+
+import Scene_1 as Scene1
+import Scene_2 as Scene2
 
 import Utils_Position as Position
 import Utils_Time as Time
+import Utils_Scene as Scene
 
 import sys
 import pygame
@@ -21,75 +26,19 @@ t1 = pygame.time.get_ticks()
 t2 = 0.0
 
 # textures
-playerTexture = pygame.image.load("res/Player.png").convert_alpha()
+playerTexture = pygame.image.load("res/Leguman.png").convert_alpha()
 tileTexture = pygame.image.load("res/Tiles.png").convert_alpha()
 assetTexture = pygame.image.load("res/Assets.png").convert_alpha()
 debugTexture = pygame.image.load("res/Debug.png").convert_alpha()
 
 # entities
-tilemap = [
-    1, 1,  1, 0, 0, 0, 0, 0, 0, 0,
-    1, 1,  1, 0, 0, 0, 0, 0, 0, 0,
-    0, 1,  1, 0, 0, 0, 0, 0, 0, 0,
-    0, 1,  1, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-]
-tileCollider = [
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-]
-tiles = []
-for i in range(0, len(tilemap)):
-    if tilemap[i] != 0:
-        tile = Tile.Tile(tileTexture)
-        tile.position = Position.Position(i % 10 * 16, int(i / 10) * 16)
-        tile.texPos = Position.Position(tilemap[i] % 16 * 16, int(tilemap[i] / 16) * 16)
-        if tileCollider[i] == 1:
-            tile.collider = True
-        tiles.append(tile)
-
-assetmap = [
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 21, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-]
-assetCollider = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-]
-assets = []
-for i in range(0, len(assetmap)):
-    if assetmap[i] != 0:
-        asset = Tile.Tile(assetTexture)
-        asset.position = Position.Position(i % 10 * 16, int(i / 10) * 16)
-        asset.texPos = Position.Position(assetmap[i] % 16 * 16, int(assetmap[i] / 16) * 16)
-        if assetCollider[i] == 1:
-            tile.collider = True
-        assets.append(asset)
+scenes = []
+scene1 = Scene1.createScene1(tileTexture, assetTexture)
+scene1.state = True
+scenes.append(scene1)
+scene2 = Scene2.createScene2(tileTexture, assetTexture)
+scene2.state = False
+scenes.append(scene2)
 
 player = Player.Player(playerTexture)
 
@@ -97,20 +46,24 @@ player = Player.Player(playerTexture)
 input = Input.Input()
 input.window = window
 input.player = player
+input.scenes = scenes
 
 playerAction = PlayerAction.PlayerAction()
 playerAction.player = player
 
 collision = Collision.Collision()
-collision.tiles = tiles
-collision.assets = assets
+collision.scenes = scenes
 collision.player = player
+
+plantations = Plantations.Plantations()
+plantations.player = player
+plantations.scenes = scenes
+plantations.texture = assetTexture
 
 draw = Draw.Draw()
 draw.window = window
 draw.player = player
-draw.tiles = tiles
-draw.assets = assets
+draw.scenes = scenes
 
 frameCounter = FrameCounter.FrameCounter()
 
@@ -125,6 +78,7 @@ while window.open:
     input.update()
     playerAction.update()
     collision.update()
+    plantations.update()
     draw.update()
     frameCounter.update()
 

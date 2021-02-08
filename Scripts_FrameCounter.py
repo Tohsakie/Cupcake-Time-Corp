@@ -8,7 +8,7 @@ class FrameCounter:
     def update(self):
         self.time += Time.Time.deltaTime
         if (self.time >= 1):
-            print('fps' + str(self.nbFrame))
+            print('fps ' + str(self.nbFrame))
             self.nbFrame = 0
             self.time = 0.0
         self.nbFrame += 1

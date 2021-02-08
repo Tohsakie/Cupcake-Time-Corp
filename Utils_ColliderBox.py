@@ -1,5 +1,5 @@
 class ColliderBox:
-    def __init__(self, x:float = 0, y:float = 0, width:float = 16, height:float = 16):
+    def __init__(self, x = 0, y = 0, width = 16, height = 16):
         self.x = x
         self.y = y
         self.width = width

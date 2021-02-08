@@ -7,11 +7,15 @@ class Draw:
     def __init__(self):
         self.window = None
         self.player = None
-        self.tile = None
+        self.tiles = None
+        self.assets = None
 
     def update(self):
         self.window.screen.fill((0, 0, 0))
-        self.tile.draw(self.window.screen)
+        for tile in self.tiles:
+            tile.draw(self.window.screen)
+        for asset in self.assets:
+            asset.draw(self.window.screen)
         self.player.draw(self.window.screen)
 
     # Rescale

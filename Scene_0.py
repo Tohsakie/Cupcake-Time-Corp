@@ -1,6 +1,6 @@
 import Entities_Tile as Tile
 import Utils_Position as Position
-import Utils_Size as Size
+import Utils_ColliderBox as ColliderBox
 import Utils_Scene as Scene
 import Entities_Warp as Warp
 
@@ -11,7 +11,6 @@ def createScene0(tileTexture, assetTexture):
         2,  2,  2,  2,  2,  2,  2,  2,  1,  1,
         2,  2,  1,  2,  2,  1,  1,  1,  2,  1,
         2,  1,  1,  1,  2,  1,  2,  1,  1,  2,
-        2,  1,  1,  2,  2,  2,  2,  2,  1,  2,
         2, 16, 17, 17, 17, 17, 17, 17, 18,  2,
         2, 32, 33, 33, 33, 33, 33, 33, 34,  2,
         2, 32, 33, 33, 33, 33, 33, 33, 34,  1,
@@ -19,7 +18,6 @@ def createScene0(tileTexture, assetTexture):
         2,  1,  1,  2,  2,  2,  1,  1,  1,  1,
     ]
     tileCollider = [
-        0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
@@ -37,15 +35,16 @@ def createScene0(tileTexture, assetTexture):
             tile.texPos = Position.Position(tilemap[i] % 16 * 16, int(tilemap[i] / 16) * 16)
             if tileCollider[i] == 1:
                 tile.collider = True
+            if tilemap[i] >= 128:
+                tile.anime = True
             tiles.append(tile)
 
     assetmap = [
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0, 21,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0, 51, 52,  0,  0,
+        0,  0,  0,  0,  0,  0, 67, 68,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -54,9 +53,8 @@ def createScene0(tileTexture, assetTexture):
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -69,6 +67,8 @@ def createScene0(tileTexture, assetTexture):
             asset.texPos = Position.Position(assetmap[i] % 16 * 16, int(assetmap[i] / 16) * 16)
             if assetCollider[i] == 1:
                 asset.collider = True
+            if assetmap[i] >= 128:
+                asset.anime = True
             assets.append(asset)
 
     plantes = []
@@ -76,11 +76,12 @@ def createScene0(tileTexture, assetTexture):
     warps = []
     warp = Warp.Warp()
     warp.warppos = Position.Position(0, -16)
-    warp.size = Size.Size(160, 16)
-    warp.tppos = Position.Position(0, 0)
+    warp.colBox = ColliderBox.ColliderBox(0, 0, 160, 16)
+    warp.tppos = Position.Position(0, 128)
     warp.sceneId = 1
     warps.append(warp)
 
+    scene0.ambiant = (192, 128, 96)
     scene0.tiles = tiles
     scene0.assets = assets
     scene0.plantes = plantes

@@ -9,7 +9,8 @@ class PlayerState(Enum):
     MOVELEFT = 3
     MOVERIGHT = 4
     PLANTATION = 5
-    RECUPERATION = 6
+    SWITCH_ITEM = 6
+    DISCUTION = 7
 
 class Player(Model.Drawable):
     def __init__(self, texture):

@@ -15,11 +15,11 @@ class Collision:
                 if scene.state == True:
                     for tile in scene.tiles:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.y += self.player.speed * Time.Time.deltaTime
                     for tile in scene.assets:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.y += self.player.speed * Time.Time.deltaTime
 
         if self.player.state == Player.PlayerState.MOVEDOWN:
@@ -27,11 +27,11 @@ class Collision:
                 if scene.state == True:
                     for tile in scene.tiles:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.y -= self.player.speed * Time.Time.deltaTime
                     for tile in scene.assets:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.y -= self.player.speed * Time.Time.deltaTime
 
         if self.player.state == Player.PlayerState.MOVELEFT:
@@ -39,11 +39,11 @@ class Collision:
                 if scene.state == True:
                     for tile in scene.tiles:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.x += self.player.speed * Time.Time.deltaTime
                     for tile in scene.assets:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.x += self.player.speed * Time.Time.deltaTime
 
         if self.player.state == Player.PlayerState.MOVERIGHT:
@@ -51,9 +51,9 @@ class Collision:
                 if scene.state == True:
                     for tile in scene.tiles:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.x -= self.player.speed * Time.Time.deltaTime
                     for tile in scene.assets:
                         if tile.collider == True:
-                            if Intersect.intersectXY(self.player.position, self.player.size, tile.position, tile.size):
+                            if Intersect.intersectXY(self.player.position, self.player.colBox, tile.position, tile.colBox):
                                 self.player.position.x -= self.player.speed * Time.Time.deltaTime

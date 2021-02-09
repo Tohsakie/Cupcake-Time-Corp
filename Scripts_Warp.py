@@ -13,14 +13,14 @@ class WarpScript:
         for scene in self.scenes:
             if scene.state == True:
                 for warp in scene.warps:
-                    if Intersect.intersectXY(self.player.position, self.player.size, warp.warppos, warp.warpsize):
+                    if Intersect.intersectXY(self.player.position, self.player.colBox, warp.warppos, warp.colBox):
                         scene.state = False
                         self.scenes[warp.sceneId].state = True
                         if self.player.Rotation == Rotation.Rotation.NORTH:
-                            self.player.position.y -= warp.tppos.y
+                            self.player.position.y = warp.tppos.y
                         if self.player.Rotation == Rotation.Rotation.SOUTH:
-                            self.player.position.y += warp.tppos.y
+                            self.player.position.y = warp.tppos.y
                         if self.player.Rotation == Rotation.Rotation.EAST:
-                            self.player.position.x -= warp.tppos.x
+                            self.player.position.x = warp.tppos.x
                         if self.player.Rotation == Rotation.Rotation.WEST:
-                            self.player.position.x += warp.tppos.x
+                            self.player.position.x = warp.tppos.x

@@ -31,7 +31,7 @@ class Input:
                 if event.key == pygame.K_e:
                     self.player.state = Player.PlayerState.PLANTATION
                 if event.key == pygame.K_a:
-                    self.player.state = Player.PlayerState.RECUPERATION
+                    self.player.state = Player.PlayerState.SWITCH_ITEM
                 #### A SUPPRIMER ####
                 if event.key == pygame.K_m:
                     for scene in self.scenes:
@@ -48,6 +48,4 @@ class Input:
                 if event.key == pygame.K_d and self.player.state == Player.PlayerState.MOVERIGHT:
                     self.player.state = Player.PlayerState.IDLE
                 if event.key == pygame.K_e and self.player.state == Player.PlayerState.PLANTATION:
-                    self.player.state = Player.PlayerState.IDLE
-                if event.key == pygame.K_a and self.player.state == Player.PlayerState.RECUPERATION:
                     self.player.state = Player.PlayerState.IDLE

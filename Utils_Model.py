@@ -1,5 +1,6 @@
 import Utils_Position as Position
 import Utils_Size as Size
+import Utils_ColliderBox as ColliderBox
 import pygame
 
 class Drawable:
@@ -8,6 +9,7 @@ class Drawable:
         self.position = Position.Position()
         self.texPos = Position.Position()
         self.size = Size.Size()
+        self.colBox= ColliderBox.ColliderBox()
 
     def draw(self, surface):
         if (surface != None):

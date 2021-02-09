@@ -26,7 +26,7 @@ def createScene4(tileTexture, assetTexture):
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1,  1, 1, 1, 1, 1, 1, 1, 1,
     ]
     tiles = []
     for i in range(0, len(tilemap)):
@@ -78,7 +78,7 @@ def createScene4(tileTexture, assetTexture):
 # Warp vers Fermier
     warp = Warp.Warp()
     warp.warppos = Position.Position(64, 48)
-    warp.colBox = ColliderBox.ColliderBox(0, 0, 160, 16)
+    warp.colBox = ColliderBox.ColliderBox(4, 4, 8, 8)
     warp.tppos = Position.Position(64, 96)
     warp.sceneId = 3
     warps.append(warp)

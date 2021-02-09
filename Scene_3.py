@@ -26,7 +26,7 @@ def createScene3(tileTexture, assetTexture):
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
-        1, 1,  1, 0, 0, 0, 1, 1, 1, 1,
+        1, 1,  1, 1, 0, 1, 1, 1, 1, 1,
     ]
     tiles = []
     for i in range(0, len(tilemap)):

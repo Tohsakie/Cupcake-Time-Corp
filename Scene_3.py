@@ -2,6 +2,8 @@ import Entities_Tile as Tile
 import Entities_Marchand as Marchand
 import Utils_Position as Position
 import Utils_Scene as Scene
+import Entities_Warp as Warp
+import Utils_ColliderBox as ColliderBox
 
 def createScene3(tileTexture, assetTexture):
     scene3 = Scene.Scene()
@@ -68,6 +70,15 @@ def createScene3(tileTexture, assetTexture):
 
     plantes = []
 
+    warps = []
+    # Warp vers Fermier
+    warp = Warp.Warp()
+    warp.warppos = Position.Position(64, 112)
+    warp.colBox = ColliderBox.ColliderBox(4, 4, 8, 8)
+    warp.tppos = Position.Position(0, 64)
+    warp.sceneId = 4
+    warps.append(warp)
+
     marchands = []
     marchand = Marchand.Marchand()
     marchand.pos = Position.Position(32, 48)
@@ -78,5 +89,6 @@ def createScene3(tileTexture, assetTexture):
     scene3.assets = assets
     scene3.plantes = plantes
     scene3.marchands = marchands
+    scene3.warps = warps
 
     return scene3

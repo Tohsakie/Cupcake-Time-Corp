@@ -19,6 +19,7 @@ import Scene_0 as Scene0
 import Scene_1 as Scene1
 import Scene_2 as Scene2
 import Scene_3 as Scene3
+import Scene_4 as Scene4
 
 import Utils_Position as Position
 import Utils_Time as Time
@@ -59,6 +60,10 @@ scene3 = Scene3.createScene3(tileTexture, assetTexture)
 scene3.state = True
 scenes.append(scene3)
 
+scene4 = Scene4.createScene4(tileTexture, assetTexture)
+scene4.state = False
+scenes.append(scene4)
+
 items = []
 
 item0 = Item.Item(assetTexture)
@@ -75,7 +80,7 @@ items.append(item1)
 
 player = Player.Player(playerTexture)
 player.colBox = ColliderBox.ColliderBox(2, 4, 12, 12)
-player.position = Position.Position(64, 64)
+player.position = Position.Position(16, 64)
 
 # scripts
 input = Input.Input()

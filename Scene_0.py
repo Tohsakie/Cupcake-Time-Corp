@@ -8,13 +8,13 @@ def createScene0(tileTexture, assetTexture):
     scene0 = Scene.Scene()
 
     tilemap = [
-        2,  2,  2,  2,  2,  2,  2,  2,  1,  1,
-        2,  2,  1,  2,  2,  1,  1,  1,  2,  1,
-        2,  1,  1,  1,  2,  1,  2,  1,  1,  2,
-        2, 16, 17, 17, 17, 17, 17, 17, 18,  2,
-        2, 32, 33, 33, 33, 33, 33, 33, 34,  2,
-        2, 32, 33, 33, 33, 33, 33, 33, 34,  1,
-        1, 48, 49, 49, 49, 49, 49, 49, 50,  1,
+        2,  2,  2,  2,  35,  2,  2,  2,  1,  1,
+        2,  2,  1,  2,  35,  1,  1,  1,  2,  1,
+        2, 86, 94, 94,  92,  1,  2,  1,  1,  2,
+        2, 35, 16, 17, 17, 17, 17, 17, 17,  18,
+        2, 35, 32, 33, 33, 33, 33, 33, 33,  34,
+        2, 35, 32, 33, 33, 33, 33, 33, 33,  34,
+        94, 92, 48, 49, 49, 49, 49, 49, 49,  50,
         2,  1,  1,  2,  2,  2,  1,  1,  1,  1,
     ]
     tileCollider = [
@@ -41,8 +41,8 @@ def createScene0(tileTexture, assetTexture):
 
     assetmap = [
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0, 21,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0, 21,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0, 51, 52,  0,  0,
         0,  0,  0,  0,  0,  0, 67, 68,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -51,8 +51,8 @@ def createScene0(tileTexture, assetTexture):
     ]
     assetCollider = [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
         0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -79,6 +79,13 @@ def createScene0(tileTexture, assetTexture):
     warp.colBox = ColliderBox.ColliderBox(0, 0, 160, 16)
     warp.tppos = Position.Position(0, 128)
     warp.sceneId = 1
+    warps.append(warp)
+
+    warp = Warp.Warp()
+    warp.warppos = Position.Position(-16, 0)
+    warp.colBox = ColliderBox.ColliderBox(0, 0, 16, 144)
+    warp.tppos = Position.Position(144, 0)
+    warp.sceneId = 4
     warps.append(warp)
 
     scene0.ambiant = (192, 128, 96)

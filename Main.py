@@ -50,6 +50,7 @@ scene0.state = False
 scenes.append(scene0)
 
 scene1 = Scene1.createScene1(tileTexture, assetTexture)
+scene1.state = False
 scenes.append(scene1)
 
 scene2 = Scene2.createScene2(tileTexture, assetTexture)
@@ -57,11 +58,11 @@ scene2.state = False
 scenes.append(scene2)
 
 scene3 = Scene3.createScene3(tileTexture, assetTexture)
-scene3.state = True
+scene3.state = False
 scenes.append(scene3)
 
 scene4 = Scene4.createScene4(tileTexture, assetTexture)
-scene4.state = False
+scene4.state = True
 scenes.append(scene4)
 
 items = []
@@ -69,7 +70,7 @@ items = []
 item0 = Item.Item(assetTexture)
 item0.texPos = Position.Position(224, 16)
 item0.position = Position.Position(16, 128)
-item0.current = True
+item0.current = False
 items.append(item0)
 
 item1 = Item.Item(assetTexture)
@@ -127,7 +128,7 @@ frameCounter = FrameCounter.FrameCounter()
 clock = pygame.time.Clock()
 
 while window.open:
-    # clock.tick(60)
+    clock.tick(144)
     t2 = pygame.time.get_ticks()
     Time.Time.deltaTime = (t2 - t1) / 1000
     t1 = t2

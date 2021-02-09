@@ -16,7 +16,7 @@ def createScene3(tileTexture, assetTexture):
         44,   3,   3,   3,   3,   3,   3,   3,   3,  45,
         44,   3,   3,   3,   3,   3,   3,   3,   3,  45,
         44,   3,   3,   3,   3,   3,   3,   3,   3,  45,
-        28,  15,  15,  15,   3,  15,  15,  15,  15,  29,
+        28,  15,  15,  15,   15,  3,  15,  15,  15,  29,
     ]
     tileCollider = [
         1, 1,  1, 1, 1, 1, 1, 1, 1, 1,
@@ -26,7 +26,7 @@ def createScene3(tileTexture, assetTexture):
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
         1, 0,  0, 0, 0, 0, 0, 0, 0, 1,
-        1, 1,  1, 1, 0, 1, 1, 1, 1, 1,
+        1, 1,  1, 1, 1, 0, 1, 1, 1, 1,
     ]
     tiles = []
     for i in range(0, len(tilemap)):
@@ -46,7 +46,7 @@ def createScene3(tileTexture, assetTexture):
         0,  0,   0,   0,   0,   0,   0,   0, 23,  0,
         0,  0,   0,   0,   0,   0,   0,   0,  0,  0,
         0, 23,   0,   0,   0,   0,   0,   0,  0,  0,
-        0,  0,   0,   0,  24,   0,   0,   0,  0,  0,
+        0,  0,   0,   0,   0,   24,   0,   0,  0,  0,
     ]
     assetCollider = [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -73,7 +73,7 @@ def createScene3(tileTexture, assetTexture):
     warps = []
     # Warp vers Fermier
     warp = Warp.Warp()
-    warp.warppos = Position.Position(64, 112)
+    warp.warppos = Position.Position(80, 112)
     warp.colBox = ColliderBox.ColliderBox(4, 4, 8, 8)
     warp.tppos = Position.Position(0, 64)
     warp.sceneId = 4

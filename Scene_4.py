@@ -14,9 +14,9 @@ def createScene4(tileTexture, assetTexture):
         2,  2, 58, 59, 60,  3,  7,  2,  1,  2,
         2,  2, 74, 75, 76,  2, 23,  2,  1,  2,
         2,  2,  2,  2,  2, 19,  2,  2,  2,  2,
-        2,  2,  2,  2, 86, 87,  1,  1,  2,  2,
-        2,  2,  1,  2, 35,  1,  1,  2,  2,  1,
-        1,  2,  2,  2, 35,  2,  1,  2,  1,  1,
+        2,  2,  2,  2, 2, 93,  91,  1,  2,  2,
+        2,  2,  1,  2, 1,  1,  93,  94,  94,  94,
+        1,  2,  2,  2, 2,  2,  1,  2,  1,  1,
     ]
     tileCollider = [
         0, 0,  0, 0, 0, 0, 0, 0, 0, 0,
@@ -77,10 +77,17 @@ def createScene4(tileTexture, assetTexture):
     warps = []
 # Warp vers Fermier
     warp = Warp.Warp()
-    warp.warppos = Position.Position(64, 48)
+    warp.warppos = Position.Position(86, 45)
     warp.colBox = ColliderBox.ColliderBox(4, 4, 8, 8)
     warp.tppos = Position.Position(64, 96)
     warp.sceneId = 3
+    warps.append(warp)
+
+    warp = Warp.Warp()
+    warp.warppos = Position.Position(160, 0)
+    warp.colBox = ColliderBox.ColliderBox(0, 0, 16, 144)
+    warp.tppos = Position.Position(0, 128)
+    warp.sceneId = 0
     warps.append(warp)
 
     #lights = []

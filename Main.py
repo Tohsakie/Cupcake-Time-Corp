@@ -3,6 +3,7 @@ import Entities_Window as Window
 import Entities_Tile as Tile
 import Entities_Warp as Warp
 import Entities_Item as Item
+import Entities_Pognon as Pognon
 
 import Scripts_Input as Input
 import Scripts_PlayerAction as PlayerAction
@@ -14,6 +15,8 @@ import Scripts_Plantations as Plantations
 import Scripts_Warp as WarpScript
 import Scripts_Animation as Animation
 import Scripts_Marchand as ScriptMarchand
+import Scripts_Ambiant as Ambiant
+import Scripts_CloudsTranslation as CloudsTranslation
 
 import Scene_0 as Scene0
 import Scene_1 as Scene1
@@ -58,11 +61,11 @@ scene2.state = False
 scenes.append(scene2)
 
 scene3 = Scene3.createScene3(tileTexture, assetTexture)
-scene3.state = False
+scene3.state = True
 scenes.append(scene3)
 
 scene4 = Scene4.createScene4(tileTexture, assetTexture)
-scene4.state = True
+scene4.state = False
 scenes.append(scene4)
 
 items = []
@@ -70,7 +73,7 @@ items = []
 item0 = Item.Item(assetTexture)
 item0.texPos = Position.Position(224, 16)
 item0.position = Position.Position(16, 128)
-item0.current = False
+item0.current = True
 items.append(item0)
 
 item1 = Item.Item(assetTexture)
@@ -78,6 +81,10 @@ item1.texPos = Position.Position(240, 0)
 item1.position = Position.Position(48, 128)
 item1.Item = Item.Items.GRN_PIMENT
 items.append(item1)
+
+pognon = Pognon.Pognon(assetTexture)
+pognon.texPos = Position.Position(240, 32)
+pognon.position = Position.Position(144, 128)
 
 player = Player.Player(playerTexture)
 player.colBox = ColliderBox.ColliderBox(2, 4, 12, 12)
@@ -104,20 +111,30 @@ plantations.items = items
 
 scriptMarchand = ScriptMarchand.ScriptMarchand()
 scriptMarchand.scenes = scenes
+scriptMarchand.items = items
+scriptMarchand.pognon = pognon
 scriptMarchand.joueur = player
 scriptMarchand.uiTexture = uiTexture
+scriptMarchand.assetTexture = assetTexture
 
 animation = Animation.Animation()
 animation.scenes = scenes
 
+cloudTranslation = CloudsTranslation.CloudsTranslation()
+cloudTranslation.scenes = scenes
+
 dynLight = DynLight.DynLight()
 dynLight.scenes = scenes
+
+ambiant = Ambiant.Ambiant()
+ambiant.scenes = scenes
 
 draw = Draw.Draw()
 draw.window = window
 draw.player = player
 draw.scenes = scenes
 draw.items = items
+draw.pognon = pognon
 
 warpScript = WarpScript.WarpScript()
 warpScript.player = player
@@ -128,7 +145,7 @@ frameCounter = FrameCounter.FrameCounter()
 clock = pygame.time.Clock()
 
 while window.open:
-    clock.tick(144)
+    # clock.tick(60)
     t2 = pygame.time.get_ticks()
     Time.Time.deltaTime = (t2 - t1) / 1000
     t1 = t2
@@ -139,7 +156,9 @@ while window.open:
     scriptMarchand.update()
     plantations.update()
     animation.update()
+    cloudTranslation.update()
     dynLight.update()
+    # ambiant.update()
     draw.update()
     warpScript.update()
     frameCounter.update()

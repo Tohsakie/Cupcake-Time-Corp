@@ -3,6 +3,7 @@ import Utils_Position as Position
 import Utils_ColliderBox as ColliderBox
 import Utils_Scene as Scene
 import Entities_Warp as Warp
+import Entities_Light as Light
 
 def createScene2(tileTexture, assetTexture):
     scene2 = Scene.Scene()
@@ -41,20 +42,20 @@ def createScene2(tileTexture, assetTexture):
 
     assetmap = [
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,108,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,124,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,109,110,  0,  0,
+        0,  0, 78, 79,  0,  0,125,126,  0,  0,
+        0,  0, 94, 95,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0, 24,  0,  0,  0,  0,  0,
     ]
     assetCollider = [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -76,16 +77,37 @@ def createScene2(tileTexture, assetTexture):
     warps = []
 # Warp devant la maison
     warp = Warp.Warp()
-    warp.warppos = Position.Position(64, 128)
+    warp.warppos = Position.Position(64, 112)
     warp.colBox = ColliderBox.ColliderBox(4, 4, 8, 8)
     warp.tppos = Position.Position(0, 64)
     warp.sceneId = 1
     warps.append(warp)
 
-    scene2.ambiant = (255, 255, 255)
+    lights = []
+
+    light1 = Light.Light()
+    light1.Color = (224, 255, 255)
+    light1.position = Position.Position(40, 8)
+    light1.Radius = 32
+    light1.MaxRadius = 33
+    light1.MinRadius = 31
+    light1.Speed = 2
+    lights.append(light1)
+
+    light2 = Light.Light()
+    light2.Color = (224, 255, 255)
+    light2.position = Position.Position(120, 8)
+    light2.Radius = 32
+    light2.MaxRadius = 33
+    light2.MinRadius = 31
+    light2.Speed = 2
+    lights.append(light2)
+
+    scene2.ambiant = (160, 192, 128)
     scene2.tiles = tiles
     scene2.assets = assets
     scene2.plantes = plantes
+    scene2.lights = lights
     scene2.warps = warps
 
     return scene2

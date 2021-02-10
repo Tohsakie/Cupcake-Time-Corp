@@ -9,3 +9,4 @@ class Scene:
         self.lights = []
         self.marchands = []
         self.ui = []
+        self.clouds = []

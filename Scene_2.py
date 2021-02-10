@@ -4,6 +4,7 @@ import Utils_ColliderBox as ColliderBox
 import Utils_Scene as Scene
 import Entities_Warp as Warp
 import Entities_Light as Light
+import Entities_Bed as Bed
 
 def createScene2(tileTexture, assetTexture):
     scene2 = Scene.Scene()
@@ -83,6 +84,12 @@ def createScene2(tileTexture, assetTexture):
     warp.sceneId = 1
     warps.append(warp)
 
+    beds = []
+    bed = Bed.Bed()
+    bed.pos = Position.Position(48, 16)
+    bed.colBox = ColliderBox.ColliderBox(0, 0, 16, 32)
+    beds.append(bed)
+
     lights = []
 
     light1 = Light.Light()
@@ -109,5 +116,6 @@ def createScene2(tileTexture, assetTexture):
     scene2.plantes = plantes
     scene2.lights = lights
     scene2.warps = warps
+    scene2.beds = beds
 
     return scene2

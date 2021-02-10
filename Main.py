@@ -17,6 +17,7 @@ import Scripts_Animation as Animation
 import Scripts_Marchand as ScriptMarchand
 import Scripts_Ambiant as Ambiant
 import Scripts_CloudsTranslation as CloudsTranslation
+import Scripts_Sleep as Sleep
 
 import Scene_0 as Scene0
 import Scene_1 as Scene1
@@ -28,6 +29,7 @@ import Utils_Position as Position
 import Utils_Time as Time
 import Utils_Scene as Scene
 import Utils_ColliderBox as ColliderBox
+import Utils_DungeonGen as DungeonGen
 
 import sys
 import pygame
@@ -37,6 +39,7 @@ pygame.init()
 window = Window.Window()
 t1 = pygame.time.get_ticks()
 t2 = 0.0
+clock = pygame.time.Clock()
 
 # textures
 playerTexture = pygame.image.load("res/Leguman.png").convert_alpha()
@@ -140,9 +143,13 @@ warpScript = WarpScript.WarpScript()
 warpScript.player = player
 warpScript.scenes = scenes
 
-frameCounter = FrameCounter.FrameCounter()
+sleep = Sleep.Sleep()
+sleep.player = player
+sleep.scenes = scenes
+sleep.tileTexture = tileTexture
+sleep.assetTexture = assetTexture
 
-clock = pygame.time.Clock()
+frameCounter = FrameCounter.FrameCounter()
 
 while window.open:
     # clock.tick(60)
@@ -161,6 +168,7 @@ while window.open:
     # ambiant.update()
     draw.update()
     warpScript.update()
-    frameCounter.update()
+    sleep.update()
+    # frameCounter.update()
 
 pygame.quit()

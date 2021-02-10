@@ -1,6 +1,7 @@
 class Scene:
     def __init__(self):
         self.state = False
+        self.IsDungeon = False
         self.ambiant = (0, 0, 0)
         self.tiles = []
         self.assets = []
@@ -10,3 +11,4 @@ class Scene:
         self.marchands = []
         self.ui = []
         self.clouds = []
+        self.beds = []

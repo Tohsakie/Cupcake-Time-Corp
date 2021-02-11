@@ -30,6 +30,7 @@ import Scene_1 as Scene1
 import Scene_2 as Scene2
 import Scene_3 as Scene3
 import Scene_4 as Scene4
+import Scene_5 as Scene5
 
 import Utils_Position as Position
 import Utils_Time as Time
@@ -43,7 +44,6 @@ import pygame
 
 # init
 pygame.init()
-pygame.display.set_caption('Sweet Nightmare')
 window = Window.Window()
 t1 = pygame.time.get_ticks()
 t2 = 0.0
@@ -57,24 +57,25 @@ debugTexture = pygame.image.load("res/Debug.png").convert_alpha()
 uiTexture = pygame.image.load("res/ui.png").convert_alpha()
 ennemyTexture = pygame.image.load("res/Ennemy.png").convert_alpha()
 keur = pygame.image.load("res/3keur.png").convert_alpha()
+reglesTexture = pygame.image.load("res/regles.png").convert_alpha()
 
 # sounds
-planterSon = pygame.mixer.Sound('sample/Planter.mp3')
-planterSon.set_volume(0.08)
-attaqueSoundFx = pygame.mixer.Sound('sample/attaque.mp3')
-attaqueSoundFx.set_volume(0.08)
-doorSoundFx = pygame.mixer.Sound('sample/porte.mp3')
-doorSoundFx.set_volume(0.08)
-oofSoundFx = pygame.mixer.Sound('sample/oof.mp3')
-oofSoundFx.set_volume(0.08)
-mobSoundFx = pygame.mixer.Sound('sample/zombie.mp3')
-mobSoundFx.set_volume(0.04)
-dungeonSound = pygame.mixer.Sound('sample/Battle_Dungeon.ogg')
-dungeonSound.set_volume(0.04)
-ExterieurSound = pygame.mixer.Sound('sample/Pas_dungeon.ogg')
-ExterieurSound.set_volume(0.04)
-InterieurSound = pygame.mixer.Sound('sample/shop2.mp3')
-InterieurSound.set_volume(0.04)
+planterSon = None #pygame.mixer.Sound('sample/Planter.mp3')
+#planterSon.set_volume(0.08)
+attaqueSoundFx = None #pygame.mixer.Sound('sample/attaque.mp3')
+#attaqueSoundFx.set_volume(0.08)
+doorSoundFx = None #pygame.mixer.Sound('sample/porte.mp3')
+#doorSoundFx.set_volume(0.08)
+oofSoundFx = None #pygame.mixer.Sound('sample/oof.mp3')
+#oofSoundFx.set_volume(0.08)
+mobSoundFx = None #pygame.mixer.Sound('sample/zombie.mp3')
+#mobSoundFx.set_volume(0.04)
+dungeonSound = None #pygame.mixer.Sound('sample/Battle_Dungeon.ogg')
+#dungeonSound.set_volume(0.04)
+ExterieurSound = None #pygame.mixer.Sound('sample/Pas_dungeon.ogg')
+#ExterieurSound.set_volume(0.04)
+InterieurSound = None #pygame.mixer.Sound('sample/shop2.mp3')
+#InterieurSound.set_volume(0.04)
 
 
 # entities
@@ -99,6 +100,10 @@ scenes.append(scene3)
 scene4 = Scene4.createScene4(tileTexture, assetTexture)
 scene4.state = False
 scenes.append(scene4)
+
+scene5 = Scene5.createScene5(reglesTexture)
+scene5.state = False
+scenes.append(scene5)
 
 itemGraines = []
 
@@ -260,7 +265,7 @@ while window.open:
     dynLight.update()
     # ambiant.update()
     draw.update()
-    music.update()
+    # music.update()
     warpScript.update()
     sleep.update()
     frameCounter.update()

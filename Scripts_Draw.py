@@ -10,7 +10,8 @@ class Draw:
         self.player = None
         self.pognon = None
         self.scenes = []
-        self.items = []
+        self.items = None
+        self.keur = None
 
     def update(self):
         self.window.screen.fill((0, 0, 0))
@@ -22,6 +23,12 @@ class Draw:
                     asset.draw(self.window.screen)
                 for plante in scene.plantes:
                     plante.draw(self.window.screen)
+                for monster in scene.monsters:
+                    monster.draw(self.window.screen)
+                for heartItem in scene.heartsItems:
+                    heartItem.draw(self.window.screen)
+                for attackpiment in scene.attackPiment:
+                    attackpiment.draw(self.window.screen)
         self.player.draw(self.window.screen)
         for scene in self.scenes:
             if scene.state == True:
@@ -32,10 +39,17 @@ class Draw:
                     if ui.quantity > 0:
                         img = self.window.font.render(str(ui.quantity), False, (224, 224, 224))
                         self.window.screen.blit(img, (ui.position.x + 19, ui.position.y + 3))
-        for item in self.items:
-            item.draw(self.window.screen)
-            img = self.window.font.render(str(item.quantity), False, (224, 224, 224))
-            self.window.screen.blit(img, (item.position.x - 14, 131))
+        if self.items.IsGraines == True:
+            for item in self.items.itemGraines:
+                item.draw(self.window.screen)
+                img = self.window.font.render(str(item.quantity), False, (224, 224, 224))
+                self.window.screen.blit(img, (item.position.x - 14, 131))
+        else:
+            for item in self.items.itemLegumes:
+                item.draw(self.window.screen)
+                img = self.window.font.render(str(item.quantity), False, (224, 224, 224))
+                self.window.screen.blit(img, (item.position.x - 14, 131))
+        self.keur.draw(self.window.screen)
         self.pognon.draw(self.window.screen)
         img = self.window.font.render(str(self.pognon.pognon), False, (224, 224, 224))
         self.window.screen.blit(img, (self.pognon.position.x - 16, 131))

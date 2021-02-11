@@ -111,6 +111,7 @@ def createScene2(tileTexture, assetTexture):
     lights.append(light2)
 
     scene2.ambiant = (160, 192, 128)
+    scene2.type = Scene.TypeScene.INTERIEUR
     scene2.tiles = tiles
     scene2.assets = assets
     scene2.plantes = plantes

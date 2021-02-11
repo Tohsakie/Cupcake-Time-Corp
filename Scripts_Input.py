@@ -67,13 +67,22 @@ class Input:
                                     if marchand.etat == Marchand.EtatMarchand.ACTIF:
                                         marchand.inventaireMarchand = Marchand.InventaireMarchand.INVENTAIRE_ACHAT
                 if event.key == pygame.K_a:
-                        self.player.state = Player.PlayerState.SWITCH_ITEM
-                #### A SUPPRIMER ####
-                if event.key == pygame.K_m:
-                    for scene in self.scenes:
-                        if scene.state == True:
-                            for plante in scene.plantes:
-                                plante.state = Plante.PlanteState.FRUIT
+                    self.player.state = Player.PlayerState.SWITCH_ITEM
+                if event.key == pygame.K_r:
+                    if self.player.state != Player.PlayerState.DISCUTION:
+                        self.player.state = Player.PlayerState.ATTACK
+                if event.key == pygame.K_2:
+                    if self.player.state != Player.PlayerState.DISCUTION:
+                        self.player.state = Player.PlayerState.ATTACKPIMENT
+
+
+
+
+
+
+
+
+
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_z and self.player.state == Player.PlayerState.MOVEUP:
                     self.player.state = Player.PlayerState.IDLE
@@ -111,3 +120,7 @@ class Input:
                             for marchand in scene.marchands:
                                 if marchand.etat == Marchand.EtatMarchand.ACTIF:
                                     marchand.inventaireMarchand = Marchand.InventaireMarchand.INVENTAIRE_RIEN
+                if event.key == pygame.K_r and self.player.state == Player.PlayerState.ATTACK:
+                    self.player.state = Player.PlayerState.IDLE
+                if event.key == pygame.K_2 and self.player.state == Player.PlayerState.ATTACKPIMENT:
+                        self.player.state = Player.PlayerState.ATTACKPIMENT

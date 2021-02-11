@@ -10,23 +10,24 @@ class Plantations:
         self.player = None
         self.scenes = []
         self.texture = None
-        self.items = []
+        self.items = None
+        self.son = None
         self.__state = False
         self.__recup = False
 
     def update(self):
         if self.player.state == Player.PlayerState.SWITCH_ITEM:
             if self.__state == False:
-                for i in range(0, len(self.items)):
-                    if self.items[i].current == True:
-                        if i == len(self.items) - 1:
-                            self.items[0].texPos.y += 16
-                            self.items[0].current = True
+                for i in range(0, len(self.items.itemGraines)):
+                    if self.items.itemGraines[i].current == True:
+                        if i == len(self.items.itemGraines) - 1:
+                            self.items.itemGraines[0].texPos.y += 16
+                            self.items.itemGraines[0].current = True
                         else:
-                            self.items[i + 1].texPos.y += 16
-                            self.items[i + 1].current = True
-                        self.items[i].texPos.y -= 16
-                        self.items[i].current = False
+                            self.items.itemGraines[i + 1].texPos.y += 16
+                            self.items.itemGraines[i + 1].current = True
+                        self.items.itemGraines[i].texPos.y -= 16
+                        self.items.itemGraines[i].current = False
                         self.__state = True
                         break
 
@@ -34,6 +35,7 @@ class Plantations:
             self.__state = False
 
         if self.player.state == Player.PlayerState.PLANTATION:
+            self.son.play()
             if self.__state == False:
                 self.__recup = False
                 for scene in self.scenes:
@@ -41,19 +43,29 @@ class Plantations:
                         for i in range(0, len(scene.plantes)):
                             if Intersect.intersectXY(self.player.position, self.player.colBox, scene.plantes[i].position, scene.plantes[i].colBox):
                                 if scene.plantes[i].type == Plante.PlanteType.PASTEQUE:
-                                    for item in self.items:
-                                        if item.Item == Item.Items.GRN_PASTEQUE:
-                                            item.quantity += 1
+                                    if scene.plantes[i].state == Plante.PlanteState.POUSSE:
+                                        for item in self.items.itemGraines:
+                                            if item.Item == Item.Items.GRN_PASTEQUE:
+                                                item.quantity += 1
+                                    if scene.plantes[i].state == Plante.PlanteState.FRUIT:
+                                        for item in self.items.itemLegumes:
+                                            if item.Item == Item.Items.PASTEQUE:
+                                                item.quantity += 1
                                 if scene.plantes[i].type == Plante.PlanteType.PIMENT:
-                                    for item in self.items:
-                                        if item.Item == Item.Items.GRN_PIMENT:
-                                            item.quantity += 1
+                                    if scene.plantes[i].state == Plante.PlanteState.POUSSE:
+                                        for item in self.items.itemGraines:
+                                            if item.Item == Item.Items.GRN_PIMENT:
+                                                item.quantity += 1
+                                    if scene.plantes[i].state == Plante.PlanteState.FRUIT:
+                                            for item in self.items.itemLegumes:
+                                                if item.Item == Item.Items.PIMENT:
+                                                    item.quantity += 1
                                 scene.plantes.pop(i)
                                 self.__recup = True
                                 self.__state = True
                                 break
                 if self.__recup == False:
-                    for item in self.items:
+                    for item in self.items.itemGraines:
                         if item.current == True and item.quantity > 0:
                             self.__state = True
                             plante = Plante.Plante(self.texture)

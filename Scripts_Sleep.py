@@ -10,6 +10,9 @@ class Sleep:
         self.scenes = []
         self.tileTexture = None
         self.assetTexture = None
+        self.ennemyTexture = None
+        self.keurTexture = None
+        self.inventory = None
 
     def update(self):
         for scene in self.scenes:
@@ -19,10 +22,12 @@ class Sleep:
 
                     # S'endormir
                         if self.player.state == Player.PlayerState.PLANTATION:
-                            if bed.state == Bed.BedState.INACTIF:
-                                self.player.state = Player.PlayerState.DISCUTION
-                                bed.state = Bed.BedState.ACTIF
-                                dungeon = DungeonGen.DungeonGen()
-                                dungeon.Gen()
-                                DungeonGenScene.createDungeonScenes(self.scenes, self.tileTexture, self.assetTexture, dungeon.genMatrix)
-                                self.player.state = Player.PlayerState.IDLE
+                            # if bed.state == Bed.BedState.INACTIF:
+                            self.player.state = Player.PlayerState.DISCUTION
+                            # bed.state = Bed.BedState.ACTIF
+                            dungeon = DungeonGen.DungeonGen()
+                            dungeon.Gen()
+                            DungeonGenScene.createDungeonScenes(self.player, self.scenes, self.tileTexture, self.assetTexture, self.ennemyTexture, self.keurTexture, dungeon.genMatrix)
+                            self.player.state = Player.PlayerState.IDLE
+                            self.inventory.IsGraines = False
+                            

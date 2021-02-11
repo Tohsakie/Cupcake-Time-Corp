@@ -122,6 +122,7 @@ def createScene4(tileTexture, assetTexture):
     warp.colBox = ColliderBox.ColliderBox(0, 0, 16, 144)
     warp.tppos = Position.Position(0, 128)
     warp.sceneId = 0
+    warp.IsDoor = False
     warps.append(warp)
 
     #lights = []
@@ -134,6 +135,7 @@ def createScene4(tileTexture, assetTexture):
     #lights.append(light)
 
     scene4.ambiant = (225, 255, 255)
+    scene4.type = Scene.TypeScene.EXTERIEUR
     scene4.tiles = tiles
     scene4.assets = assets
     scene4.plantes = plantes

@@ -5,12 +5,13 @@ import Entities_Tile as Tile
 import Entities_Item as Item
 import Utils_Position as Position
 import Utils_Size as Size
+import Entities_Inventory as Inventory
 import pygame
 
 class ScriptMarchand:
     def __init__(self):
         self.scenes = []
-        self.items = []
+        self.items = None
         self.pognon = None
         self.joueur = None
         self.uiTexture = None
@@ -36,13 +37,13 @@ class ScriptMarchand:
                                 produit0 = Item.Item(self.assetTexture)
                                 produit0.position = Position.Position(48, 48)
                                 produit0.texPos = Position.Position(224, 16)
-                                produit0.quantity = 10
+                                produit0.quantity = 5
                                 __ActifUI = 0
                                 scene.ui.append(produit0)
                                 produit1 = Item.Item(self.assetTexture)
                                 produit1.position = Position.Position(48, 64)
                                 produit1.texPos = Position.Position(240, 0)
-                                produit1.quantity = 10
+                                produit1.quantity = 1
                                 scene.ui.append(produit1)
 
                     # Fermeture du menu de vente
@@ -71,15 +72,15 @@ class ScriptMarchand:
                         # Achat dans le menu
                             if marchand.inventaireMarchand == Marchand.InventaireMarchand.INVENTAIRE_ACHAT:
                                 if self.__ActifUI == 0: # pasteque
-                                    for item in self.items:
+                                    for item in self.items.itemGraines:
                                         if item.Item == Item.Items.GRN_PASTEQUE:
-                                            if self.pognon.pognon >= 10:
+                                            if self.pognon.pognon >= 5:
                                                 item.quantity += 1
-                                                self.pognon.pognon -= 10
+                                                self.pognon.pognon -= 5
                                 if self.__ActifUI == 1: # piment
-                                    for item in self.items:
+                                    for item in self.items.itemGraines:
                                         if item.Item == Item.Items.GRN_PIMENT:
-                                            if self.pognon.pognon >= 10:
+                                            if self.pognon.pognon >= 1:
                                                 item.quantity += 1
-                                                self.pognon.pognon -= 10
+                                                self.pognon.pognon -= 1
                                 marchand.inventaireMarchand = Marchand.InventaireMarchand.INVENTAIRE_RIEN

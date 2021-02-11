@@ -115,6 +115,7 @@ def createScene1(tileTexture, assetTexture):
     warp.colBox = ColliderBox.ColliderBox(0, 0, 160, 16)
     warp.tppos = Position.Position(0, 0)
     warp.sceneId = 0
+    warp.IsDoor = False
     warps.append(warp)
 
 # Warp vers Maison Joueur
@@ -136,6 +137,7 @@ def createScene1(tileTexture, assetTexture):
     lights.append(light)
 
     scene1.ambiant = (225, 255, 255)
+    scene1.type = Scene.TypeScene.EXTERIEUR
     scene1.tiles = tiles
     scene1.assets = assets
     scene1.plantes = plantes

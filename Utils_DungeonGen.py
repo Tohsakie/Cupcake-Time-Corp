@@ -10,6 +10,8 @@ class Cell:
     def __init__(self):
         self.State = CellState.UNKNOW
         self.Primary = False
+        self.Last = False
+        self.IdRoom = 0
         self.IsInit = False
         self.X = None
         self.Y = None
@@ -36,9 +38,19 @@ class DungeonGen:
         PrimaryX = int(rnd % 5)
         PrimaryY = int(rnd / 5)
 
-        while self.NbRoom < 4 or self.NbRoom > 11:
+        while self.NbRoom < 5 or self.NbRoom > 16:
+            self.genMatrix = [[Cell(), Cell(), Cell(), Cell(), Cell()],
+                          [Cell(), Cell(), Cell(), Cell(), Cell()],
+                          [Cell(), Cell(), Cell(), Cell(), Cell()],
+                          [Cell(), Cell(), Cell(), Cell(), Cell()],
+                          [Cell(), Cell(), Cell(), Cell(), Cell()],
+                          [Cell(), Cell(), Cell(), Cell(), Cell()]]
             self.NbRoom = 0
-            self.InitCell(PrimaryX, PrimaryY)
+            cell = self.InitCell(PrimaryX, PrimaryY)
+            for row in self.genMatrix:
+                for column in row:
+                    if column.IdRoom == self.NbRoom:
+                        column.Last = True
 
 # Initialistion des donnes de la cellule
     def InitCell(self, posx, posy):
@@ -48,7 +60,7 @@ class DungeonGen:
         cell.Y = posy
         cell.State = CellState.OPEN
 
-        if posx <= 0:
+        if posx == 0:
             cell.Left = CellState.CLOSE
         else:
             if self.genMatrix[posx - 1][posy].State != CellState.UNKNOW:
@@ -72,7 +84,7 @@ class DungeonGen:
                 else:
                     cell.Right = CellState.OPEN
 
-        if posy <= 0:
+        if posy == 0:
             cell.Up = CellState.CLOSE
         else:
             if self.genMatrix[posx][posy - 1].State != CellState.UNKNOW:
@@ -84,7 +96,7 @@ class DungeonGen:
                 else:
                     cell.Up = CellState.OPEN
 
-        if posy >= 4:
+        if posy == 4:
             cell.Down = CellState.CLOSE
         else:
             if self.genMatrix[posx][posy + 1].State != CellState.UNKNOW:
@@ -100,8 +112,11 @@ class DungeonGen:
         self.genMatrix[posx][posy] = cell
         if self.NbRoom == 1:
             cell.Primary = True
+        cell.IdRoom = self.NbRoom
 
         self.RecGen(cell)
+
+        return cell
 
 # Prepare les cellules adjacentes
     def RecGen(self, cell):

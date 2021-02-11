@@ -67,7 +67,23 @@ class Attack:
                                         self.player.position.y += 16
                                     if self.player.Rotation == Rotation.Rotation.SOUTH:
                                         self.player.position.y -= 16
-                                    # if self.player.life <= 0:
+                                    if self.player.life <= 0:
+                                        self.player.nbJour += 1
+                                        self.inventory.IsGraines = True
+                                        self.__purge = False
+                                        tmparray = []
+                                        for i in self.scenes:
+                                            if i.IsDungeon == True:
+                                                tmparray.append(i)
+                                        for i in tmparray:
+                                            self.scenes.remove(i)
+                                        for scene in self.scenes:
+                                            for plante in scene.plantes:
+                                                plante.state = Plante.PlanteState.FRUIT
+                                        self.player.life = 3
+                                        self.keur.size.w = 24
+                                        self.scenes[2].state = True
+                                        self.player.position = Position.Position(16, 64)
 
 
         if self.player.state == Player.PlayerState.ATTACKPIMENT and self.__IsPiment == False:

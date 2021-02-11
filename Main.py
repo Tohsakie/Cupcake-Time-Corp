@@ -43,6 +43,7 @@ import pygame
 
 # init
 pygame.init()
+pygame.display.set_caption('Sweet Nightmare')
 window = Window.Window()
 t1 = pygame.time.get_ticks()
 t2 = 0.0

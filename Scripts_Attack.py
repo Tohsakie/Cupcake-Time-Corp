@@ -9,6 +9,7 @@ import Utils_ColliderBox as ColliderBox
 import Utils_Size as Size
 import Entities_Inventory as Inventory
 import Entities_Item as Item
+import time
 
 class Attack:
     def __init__(self):
@@ -68,7 +69,7 @@ class Attack:
                                     if self.player.Rotation == Rotation.Rotation.SOUTH:
                                         self.player.position.y -= 16
                                     if self.player.life <= 0:
-                                        self.player.nbJour += 1
+                                        self.player.nbJour = 1
                                         self.inventory.IsGraines = True
                                         self.__purge = False
                                         tmparray = []
@@ -80,8 +81,18 @@ class Attack:
                                         for scene in self.scenes:
                                             for plante in scene.plantes:
                                                 plante.state = Plante.PlanteState.FRUIT
+                                        self.pognon.pognon = 0
+                                        for graine in self.inventory.itemGraines:
+                                            graine.quantity = 0
+                                        for legume in self.inventory.itemLegumes:
+                                            legume.quantity = 0
                                         self.player.life = 3
                                         self.keur.size.w = 24
+
+                                        # for scene in self.scenes:
+                                        #     if scene.state == True: # la scene en cours
+                                        #         scene.ambiant(255,255,255)
+
                                         self.scenes[2].state = True
                                         self.player.position = Position.Position(16, 64)
 

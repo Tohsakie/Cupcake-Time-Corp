@@ -22,7 +22,7 @@ def createDungeonScenes(player, scenes, tileTexture, assetTexture, ennemyTexture
                  [0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0]]
-    sceneId = 5
+    sceneId = 6
     for x in range(0, 5):
         for y in range(0, 5):
             if dungeonMatrix[x][y].State == DungeonGen.CellState.OPEN:

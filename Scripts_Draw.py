@@ -12,6 +12,8 @@ class Draw:
         self.scenes = []
         self.items = None
         self.keur = None
+        self.oldDay = 1
+        self.font2 = pygame.font.SysFont("res/Links_awakening_font.ttf", 12)
 
     def update(self):
         self.window.screen.fill((0, 0, 0))
@@ -44,11 +46,18 @@ class Draw:
                 item.draw(self.window.screen)
                 img = self.window.font.render(str(item.quantity), False, (224, 224, 224))
                 self.window.screen.blit(img, (item.position.x - 14, 131))
+            img2 = self.font2.render("Jour:" + str(self.player.nbJour), False, (224, 224, 224))
+            self.window.screen.blit(img2, (65, 132))
         else:
             for item in self.items.itemLegumes:
                 item.draw(self.window.screen)
                 img = self.window.font.render(str(item.quantity), False, (224, 224, 224))
                 self.window.screen.blit(img, (item.position.x - 14, 131))
+            img2 = self.font2.render("Nuit:" + str(self.player.nbJour), False, (224, 224, 224))
+            self.window.screen.blit(img2, (65, 132))
+
+
+
         self.keur.draw(self.window.screen)
         self.pognon.draw(self.window.screen)
         img = self.window.font.render(str(self.pognon.pognon), False, (224, 224, 224))
@@ -98,7 +107,19 @@ class Draw:
         #                radius -= 4
         
         #self.window.window.blit(mask, (0,0), special_flags = pygame.BLEND_MULT)
-        
+
+        #  img = self.window.font.render(str("test"), True, (224, 224, 224))
+        # self.window.screen.blit(img, (10, 10))
+        # print(self.oldDay)
+        # print("-")
+        # print(self.player.nbJour)
+
+        # if self.oldDay != self.player.nbJour :
+        #     img = self.window.font.render(str("test"), True, (224, 224, 224))
+        #     self.window.screen.blit(img, (10, 10))
+        #     self.oldDay == self.player.nbJour
+        #     self.oldDay += 1 
+
         pygame.display.update()
 
         # pygame.display.flip()
